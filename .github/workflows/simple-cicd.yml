@@ -1,1 +1,26 @@
 name: CI/CD Pipeline
+
+# Run this workflow on every push or pull request to the main branch
+on:
+    push:
+      branches:
+        - master
+    pull_request:
+      branches:
+        - master
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+    steps:
+        - name: Checkout Code
+          uses: actions/checkup@v3
+
+        - name: Set up Node.js
+          uses: actions/setup-node@v3
+          with:
+            node-version: '16'
+        
+        - name: Install dependencies
+          run: npm install
